@@ -1,11 +1,15 @@
-export type Priority = "high" | "medium" | "low"
+export type Priority = "high" | "medium" | "low";
 
-export interface Task {
-  id: string
-  title: string
-  dueDate: string // ISO date string
-  priority: Priority
-  completed: boolean
-}
+export type Task = {
+  id: string;
+  title: string;
+  info?: string;
+  limitDate: string; // ISO date string
+  priority: Priority;
+  completed: boolean;
+  memberId: string;
+};
 
-export type FilterType = "all" | "incomplete" | "completed"
+export type TaskCreateInput = Omit<Task, "id">;
+
+export type FilterType = "all" | "incomplete" | "completed";

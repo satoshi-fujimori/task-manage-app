@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
 
 interface TaskCardProps {
   task: Task
-  onToggleComplete: (id: string) => void
+  onToggleComplete: (task: Task) => void
   onEdit: (task: Task) => void
 }
 
@@ -32,8 +32,8 @@ const priorityConfig: Record<Priority, { label: string; className: string }> = {
 }
 
 export function TaskCard({ task, onToggleComplete, onEdit }: TaskCardProps) {
-  const dueDate = new Date(task.dueDate)
-  const isOverdue = isPast(dueDate) && !isToday(dueDate) && !task.completed
+  const limitDate = new Date(task.limitDate);
+  const isOverdue = isPast(limitDate) && !isToday(limitDate) && !task.completed
   const priority = priorityConfig[task.priority]
 
   return (
@@ -46,7 +46,7 @@ export function TaskCard({ task, onToggleComplete, onEdit }: TaskCardProps) {
       <CardContent className="flex items-center gap-4 p-4">
         <Checkbox
           checked={task.completed}
-          onCheckedChange={() => onToggleComplete(task.id)}
+          onCheckedChange={() => onToggleComplete(task)}
           className="size-5"
           aria-label={task.completed ? "タスクを未完了にする" : "タスクを完了にする"}
         />
@@ -70,7 +70,7 @@ export function TaskCard({ task, onToggleComplete, onEdit }: TaskCardProps) {
             >
               <CalendarIcon className="size-3.5" />
               <span className={cn(isOverdue && "font-medium")}>
-                {format(dueDate, "M月d日 (E)", { locale: ja })}
+                {format(limitDate, "M月d日 (E)", { locale: ja })}
               </span>
             </div>
             
