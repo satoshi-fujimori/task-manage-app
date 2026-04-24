@@ -1,12 +1,5 @@
 export type MemberType = "adult" | "child";
 
-export type Member = {
-  id: string;
-  name: string;
-  type: MemberType;
-  icon: string; // emoji or avatar URL
-};
-
 export type User = {
   id: string;
   email?: string;

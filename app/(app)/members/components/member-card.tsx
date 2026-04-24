@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import type { Member } from "@/types/auth"
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Member } from "@/types/member";
 
 interface MemberCardProps {
-  member: Member
-  onClick: () => void
+  member: Member;
+  onClick: () => void;
 }
 
 export function MemberCard({ member, onClick }: MemberCardProps) {
@@ -21,11 +21,8 @@ export function MemberCard({ member, onClick }: MemberCardProps) {
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="font-semibold truncate">{member.name}</h3>
-          <Badge variant={member.type === "adult" ? "default" : "secondary"} className="mt-1">
-            {member.type === "adult" ? "大人" : "子供"}
-          </Badge>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
